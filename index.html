@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>hello phaser!</title>
+		<link rel="stylesheet" type="text/css" href="fontkit/stylesheet.css">
+		<script src="phaser.js"></script>
+		<script src="rotate.js"></script>
+		<script src="r.js"></script>
+		<script src="level.js"></script>
+		<script src="leveltimer.js"></script>
+		<script src="mapdata.js"></script>
+		<script src="controller.js"></script>
+		<script src="inputlistener.js"></script>
+		<script src="blockdrawer.js"></script>
+		<script src="block.js"></script>
+		<style type="text/css">
+			body{
+				font-family: 'nokia_cellphone_fcsmall';
+				margin:auto;
+				padding:0px;
+				font-size:24px
+			}
+			.rotateDiv
+			{
+				background-color:#2E2633;
+			}
+			p
+			{
+				text-align: center;
+				margin:0.5em;
+				color:#DCE9BE;
+			}
+			.center {
+				margin: auto;
+				width: 600px;
+				padding: 10px;
+			}
+			.hidden
+			{
+				opacity: 0;
+				-webkit-transition: all 1s 0s;
+				-moz-transition: all 1s 0s;
+				-ms-transition: all 1s 0s;
+				-o-transition: all 1s 0s;
+				transition: all 1s 0s;
+			}
+			.visible
+			{
+				-webkit-opacity: 1;
+				-moz-opacity: 1;
+				opacity: 1;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="rotateDiv center">
+		<p id="levelTitle" style="font-size:3em">
+		</p>
+		<p id="timerText" style="font-size:2em">
+		</p>
+		<p class="hidden" style="padding:20px" id="resultText" style="font-size:1em">
+			no text...
+		</p>
+		</div>
+		<div class="rotateDiv center" id="canvasdiv"/>
+	</body>
+</html>
