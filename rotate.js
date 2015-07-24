@@ -15,7 +15,6 @@ window.onload = function() {
 		var level;
 		
 		function preload () {
-			game.load.image('logo', 'phaser.png');
 			game.load.image('color1', 'assets/bubblegum1.png');
 			game.load.image('color2', 'assets/bubblegum2.png');
 			game.load.image('color3', 'assets/bubblegum3.png');

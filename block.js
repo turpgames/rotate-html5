@@ -5,7 +5,7 @@ function Block (game, level, xPos, yPos, rowIndex, colIndex, t, rot) { // constr
 	this.col = colIndex;
 	this.x = xPos;
 	this.y = yPos;
-	var type = t;
+	this.type = t;
 
 	this.width = Controller.getBlockSize();
 	this.height = Controller.getBlockSize();
@@ -39,27 +39,27 @@ function Block (game, level, xPos, yPos, rowIndex, colIndex, t, rot) { // constr
 		return rect;
 	}
 	this.connections = [];
-	if (type == Block.CONN0) {
+	if (this.type == Block.CONN0) {
 		this.connections = [false, false, false, false];
 		this.rects = [[],[],[],[]];
 	}
-	else if (type == Block.CONN1) {
+	else if (this.type == Block.CONN1) {
 		this.connections = [true, false, false, false];
 		this.rects = BlockDrawer.getConn1Rects(this);
 	}
-	else if (type == Block.CONN2CRV) {
+	else if (this.type == Block.CONN2CRV) {
 		this.connections = [true, true, false, false];
 		this.rects = BlockDrawer.getConn2CRects(this);
 	}
-	else if (type == Block.CONN2STR) {
+	else if (this.type == Block.CONN2STR) {
 		this.connections = [true, false, true, false];
 		this.rects = BlockDrawer.getConn2SRects(this);
 	}
-	else if (type == Block.CONN3) {
+	else if (this.type == Block.CONN3) {
 		this.connections = [true, true, true, false];
 		this.rects = BlockDrawer.getConn3Rects(this);
 	}
-	else if (type == Block.CONN4) {
+	else if (this.type == Block.CONN4) {
 		this.connections = [true, true, true, true];
 		this.rects = BlockDrawer.getConn4Rects(this);
 	}

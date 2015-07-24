@@ -49,8 +49,9 @@ function Controller(game) {
 		this.levelTimer.unpause();	
 	}
 	
-	this.blockIsClicked = function() {
-		this.turnSound.play();
+	this.blockIsClicked = function(block) {
+		if(block.type != Block.CONN0)
+			this.turnSound.play();
 	}
 	
 	this.getLevelTime = function() {
