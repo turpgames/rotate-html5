@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8" />
-		<title>hello phaser!</title>
+		<title>Rot8</title>
 		<link rel="stylesheet" type="text/css" href="fontkit/stylesheet.css">
 		<script src="phaser.js"></script>
 		<script src="rotate.js"></script>
@@ -17,24 +17,28 @@
 		<style type="text/css">
 			body{
 				font-family: 'nokia_cellphone_fcsmall';
-				margin:auto;
 				padding:0px;
-				font-size:24px
+				background-color:#2E2633
 			}
-			.rotateDiv
-			{
+			div {
+				margin-top: 0px;
+				margin-right: auto;
+				margin-bottom: 0px;
+				margin-left: auto;
 				background-color:#2E2633;
+				padding: 1em;
+			}
+			canvas {
+				margin: auto;
 			}
 			p
 			{
 				text-align: center;
-				margin:0.5em;
+				margin:0.2em;
 				color:#DCE9BE;
 			}
 			.center {
 				margin: auto;
-				width: 600px;
-				padding: 10px;
 			}
 			.hidden
 			{
@@ -53,16 +57,17 @@
 			}
 		</style>
 	</head>
-	<body>
-		<div class="rotateDiv center">
-		<p id="levelTitle" style="font-size:3em">
-		</p>
-		<p id="timerText" style="font-size:2em">
-		</p>
-		<p class="hidden" style="padding:20px" id="resultText" style="font-size:1em">
-			no text...
-		</p>
+	<body id="body">
+		<div>
+			<div>
+				<p id="levelTitle" style="font-size:3em" />
+				<p id="timerText" style="font-size:2em" />
+				<p class="hidden" style="padding:0.1em" id="resultText" style="font-size:1em">
+					no text...
+				</p>
+			</div>
+			<div id="canvasdiv">
+			</div>
 		</div>
-		<div class="rotateDiv center" id="canvasdiv"/>
 	</body>
 </html>

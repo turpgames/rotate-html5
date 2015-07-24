@@ -4,6 +4,8 @@ function LevelTimer(game, controller) {
 	this.totalTime;
 	this.isStopped = true;
 	this.isFlashShown;
+	this.lastSecondsSound = game.make.sound('lastseconds', 1, false, true);
+	this.isLastSeconds = false;
 	
 	this.frameGroup = game.add.group();
 	var sprite = this.frameGroup.create(R.LEVELFRAMEOFFSETX, R.LEVELFRAMEOFFSETY, 'color2');
@@ -52,12 +54,16 @@ function LevelTimer(game, controller) {
 				this.currTime = 0;
 				this.isStopped = true;
 				this.parent.levelLost();
+				window.clearInterval(this.interval);
 			}
-			else if (this.currTime < 0.5) {
-			
+			else if (this.currTime < 500) {
+				window.clearInterval(this.interval);
 			}
-			else if (this.isFlashShown && this.currTime < 10) {
-			
+			else if (this.isFlashShown && this.currTime < 10000 && !this.isLastSeconds) {
+				this.isLastSeconds = true;
+				this.interval = setInterval(function(p) {
+				p.lastSecondsSound.play();
+				}, 1000, this);
 			}
 			
 			var time = Math.ceil(this.currTime / 1000);
@@ -89,10 +95,13 @@ function LevelTimer(game, controller) {
 		this.totalTime = totalTime;
 		this.currTime = totalTime;
 		this.isStopped = false;
+		this.isLastSeconds = false;
 	}
 	
 	this.addTime = function(addedTime) {
 		this.totalTime += addedTime;
 		this.currTime += addedTime;
+		this.isLastSeconds = false;
+		window.clearInterval(this.interval);
 	}
 }

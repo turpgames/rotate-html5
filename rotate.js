@@ -1,5 +1,14 @@
-window.onload = function() {
 
+function bod() {
+	var body = document.getElementById("body");
+	var width = screen.availWidth;
+	var height = screen.availHeight;
+	body.setAttribute("style", "width: " + height * 6 / 10);
+	body.setAttribute("style", "height: " + height);
+}
+		
+window.onload = function() {
+		R();
 		var game = new Phaser.Game(R.GAMEWIDTH, R.GAMEHEIGHT, Phaser.AUTO, "canvasdiv", { preload: preload, create: create, update: update });
 		var levelTimer;
 		var controller;
@@ -11,8 +20,14 @@ window.onload = function() {
 			game.load.image('color2', 'assets/bubblegum2.png');
 			game.load.image('color3', 'assets/bubblegum3.png');
 			game.load.image('colort', 'assets/t.png');
+			game.load.audio('lastseconds', 'assets/lastseconds1.wav', true);
+			game.load.audio('lost', 'assets/lost1.wav', true);
+			game.load.audio('new', 'assets/new1.wav', true);
+			game.load.audio('size', 'assets/size1.wav', true);
+			game.load.audio('turn', 'assets/turn1.wav', true);
+			game.load.audio('win', 'assets/win1.wav', true);
 		}
-
+		
 		function create () {
 			game.stage.backgroundColor = '#2E2633';
 			game.input.maxPointers = 1;

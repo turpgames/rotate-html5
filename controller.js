@@ -2,6 +2,13 @@ function Controller(game) {
 	this.game = game;
 	this.levelTimer = new LevelTimer(game, this);
 	this.mapIndex;
+	
+	this.sizeSound = game.make.sound('size', 1, false, true);
+	this.newSound = game.make.sound('new', 1, false, true);
+	this.winSound = game.make.sound('win', 1, false, true);
+	this.turnSound = game.make.sound('turn', 1, false, true);
+	this.lostSound = game.make.sound('lost', 1, false, true);
+	
 	this.start = function() {
 		this.mapIndex = 1;
 		Controller.CURRENTMATRIXSIZE = 1;
@@ -25,11 +32,11 @@ function Controller(game) {
 			this.mapIndex = 1;
 			this.levelTimer.start(R.LEVELTIMEDEC * Controller.CURRENTMATRIXSIZE, Controller.CURRENTMATRIXSIZE);
 			if (Controller.CURRENTMATRIXSIZE != 2) {
-				//sizeSound.play();
+				this.sizeSound.play();
 			}
 		}
 		else {
-			//newSound.play();
+			this.newSound.play();
 		}
 		
 		if (this.level != undefined)
@@ -43,7 +50,7 @@ function Controller(game) {
 	}
 	
 	this.blockIsClicked = function() {
-		
+		this.turnSound.play();
 	}
 	
 	this.getLevelTime = function() {
@@ -56,11 +63,11 @@ function Controller(game) {
 		res.className = "visible";
 		setTimeout(function() { 
 			document.getElementById("resultText").className = "hidden";
-			}, 3000);
+			}, 1000);
 	}
 	
 	this.levelWon = function() {
-		// winSound.play();
+		this.winSound.play();
 		this.level.deactivate();
 		
 		var addedTime = this.getLevelTime();
@@ -76,10 +83,11 @@ function Controller(game) {
 		}
 		// gameWonFlash.start();
 		this.levelTimer.addTime(addedTime);
-		
-		// levelTimer.pause();
-		// pauseTimer.start();
-		this.newLevel();
+		this.levelTimer.pause();
+		setTimeout(function(p) { 
+			p.newLevel();
+			p.levelTimer.unpause();
+			}, 500 ,this);
 	}
 	
 	this.levelLost = function() {
@@ -91,7 +99,7 @@ function Controller(game) {
 		
 		this.levelTimer.stop();
 		
-		// lostSound.play();
+		this.lostSound.play();
 	}
 	this.level;
 	this.start();
