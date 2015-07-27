@@ -8,11 +8,8 @@ function bod() {
 }
 		
 window.onload = function() {
-		R();
-		var game = new Phaser.Game(R.GAMEWIDTH, R.GAMEHEIGHT, Phaser.AUTO, "canvasdiv", { preload: preload, create: create, update: update });
-		var levelTimer;
+		var game = new Phaser.Game("100", "100", Phaser.AUTO, "canvasDiv", { preload: preload, create: create, update: update });
 		var controller;
-		var level;
 		
 		function preload () {
 			game.load.image('color1', 'assets/bubblegum1.png');
@@ -30,6 +27,7 @@ window.onload = function() {
 		function create () {
 			game.stage.backgroundColor = '#2E2633';
 			game.input.maxPointers = 1;
+			R(game);
 			controller = new Controller(game);
 			// var y = 0;
 			// var block = new Block(game, level, 0, y, 0, 0, Block.CONN1, Direction.EAST);

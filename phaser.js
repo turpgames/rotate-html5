@@ -23874,28 +23874,34 @@ Phaser.ScaleManager.prototype = {
         var newWidth = 0;
         var newHeight = 0;
 
-        if (typeof width === 'number')
-        {
-            newWidth = width;
-        }
-        else
-        {
-            //  Percentage based
-            this.parentScaleFactor.x = parseInt(width, 10) / 100;
-            newWidth = rect.width * this.parentScaleFactor.x;
-        }
-
-        if (typeof height === 'number')
-        {
-            newHeight = height;
-        }
-        else
-        {
-            //  Percentage based
-            this.parentScaleFactor.y = parseInt(height, 10) / 100;
-            newHeight = rect.height * this.parentScaleFactor.y;
-        }
-
+		if (rect.height > rect.width) {
+			if (typeof width === 'number')
+			{
+				newWidth = width;
+			}
+			else
+			{
+				// Percentage based
+				this.parentScaleFactor.x = parseInt(width, 10) / 100;
+				this.parentScaleFactor.y = parseInt(width, 10) / 100;
+				newWidth = rect.width * this.parentScaleFactor.x;
+			}
+			newHeight = newWidth;
+		}
+		else {
+			if (typeof height === 'number')
+			{
+				newHeight = height;
+			}
+			else
+			{
+				 // Percentage based
+				this.parentScaleFactor.y = parseInt(height, 10) / 100;
+				this.parentScaleFactor.x = parseInt(height, 10) / 100;
+				newHeight = rect.height * 0.75;
+			}
+			newWidth = newHeight;
+		}
         this._gameSize.setTo(0, 0, newWidth, newHeight);
 
         this.updateDimensions(newWidth, newHeight, false);

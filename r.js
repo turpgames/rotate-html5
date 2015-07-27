@@ -1,24 +1,16 @@
-function R() {
+function R(game) {
 	// var main = document.getElementById("mainDiv");
 	// var display = document.getElementById("displayDiv");
 	
-	var width = screen.availWidth;
-	var height = screen.availHeight;
-	if (width > height) {
-		width = height * 6 / 10;
-	}
-	else {
-		width = width * 6 / 7;
-	}
-	R.GAMEWIDTH = width;
-	R.GAMEHEIGHT = width;
+	R.GAMEWIDTH = game.scale._gameSize.width;
+	R.GAMEHEIGHT = game.scale._gameSize.height;
 	
 	R.UNIT = R.GAMEWIDTH / 60;
 	R.BUTTONWIDTH =  R.UNIT * 23;
 	R.BUTTONHEIGHT =  R.UNIT * 10;
 	R.BUTTONOFFSETX =  R.UNIT;
 		
-	R.LEVELSIZE = R.UNIT * 50;
+	R.LEVELSIZE = R.UNIT * 55;
 	R.MAPOFFSETX = (R.GAMEWIDTH - R.LEVELSIZE) / 2;
 	R.MAPOFFSETY = R.GAMEHEIGHT - R.MAPOFFSETX - R.LEVELSIZE;
 

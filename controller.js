@@ -9,6 +9,7 @@ function Controller(game) {
 	this.turnSound = game.make.sound('turn', 1, false, true);
 	this.lostSound = game.make.sound('lost', 1, false, true);
 	
+	document.getElementById("levelTitle").style.fontSize = R.GAMEWIDTH / 3;
 	this.start = function() {
 		this.mapIndex = 1;
 		Controller.CURRENTMATRIXSIZE = 1;
@@ -61,9 +62,8 @@ function Controller(game) {
 	this.setResultText = function(text) {
 		var res = document.getElementById("resultText");
 		res.innerHTML = text;
-		res.className = "visible";
 		setTimeout(function() { 
-			document.getElementById("resultText").className = "hidden";
+			document.getElementById("resultText").innerHTML = "&nbsp;";
 			}, 1000);
 	}
 	

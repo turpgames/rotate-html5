@@ -1,10 +1,13 @@
 <!doctype html>
 <html>
 	<head>
-		<meta charset="UTF-8" />
 		<title>Rot8</title>
-		
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" type="text/css" href="fontkit/stylesheet.css">
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 		
 		<script src="phaser.js"></script>
@@ -18,30 +21,17 @@
 		<script src="blockdrawer.js"></script>
 		<script src="block.js"></script>
 		<style type="text/css">
-			body{
+			body {
 				font-family: 'nokia_cellphone_fcsmall';
-				padding:0px;
 				background-color:#2E2633
-			}
-			div {
-				margin-top: 0px;
-				margin-right: auto;
-				margin-bottom: 0px;
-				margin-left: auto;
-				background-color:#2E2633;
-				padding: 1em;
 			}
 			canvas {
 				margin: auto;
 			}
-			p
+			p,h1,h2,h3,h4,h5,h6,h7,h8,h9,h10
 			{
 				text-align: center;
-				margin:0.2em;
 				color:#DCE9BE;
-			}
-			.center {
-				margin: auto;
 			}
 			.hidden
 			{
@@ -60,17 +50,34 @@
 			}
 		</style>
 	</head>
-	<body id="body">
-		<div>
-			<div>
-				<p id="levelTitle" style="font-size:3em" />
-				<p id="timerText" style="font-size:2em" />
-				<p class="hidden" style="padding:0.1em" id="resultText" style="font-size:1em">
-					no text...
-				</p>
+	<body>
+		<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-3">
+				<h1>
+					Rot8
+				</h1>
+				<h4>
+					Click to rotate and connect all parts.
+					Solve n levels for each size nxn.
+					You get n * 5 seconds for each level.
+				</h4>	
+				<h2 style="font-size:2em">
+					Can you reach 8x8?
+				</h2>
 			</div>
-			<div id="canvasdiv">
+			<div class="col-md-9">
+				<div class="row">
+					<h6 style="font-size:1em"> &nbsp; </p>
+					<h2 id="levelTitle" />
+					<h3 id="timerText" />
+					<h4 id="resultText">
+					&nbsp;
+					</h4>
+				<div id="canvasDiv" />
+				</div>
 			</div>
+		</div>
 		</div>
 	</body>
 </html>
