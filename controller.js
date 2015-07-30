@@ -3,11 +3,11 @@ function Controller(game) {
 	this.levelTimer = new LevelTimer(game, this);
 	this.mapIndex;
 	
-	this.sizeSound = game.make.sound('size', 1, false, true);
-	this.newSound = game.make.sound('new', 1, false, true);
-	this.winSound = game.make.sound('win', 1, false, true);
-	this.turnSound = game.make.sound('turn', 1, false, true);
-	this.lostSound = game.make.sound('lost', 1, false, true);
+	this.sizeSound = game.make.sound('size', 0.6, false, true);
+	this.newSound = game.make.sound('new', 0.6, false, true);
+	this.winSound = game.make.sound('win', 0.6, false, true);
+	this.turnSound = game.make.sound('turn', 0.6, false, true);
+	this.lostSound = game.make.sound('lost', 0.6, false, true);
 	
 	document.getElementById("levelTitle").style.fontSize = R.GAMEWIDTH / 3;
 	this.start = function() {
@@ -16,6 +16,10 @@ function Controller(game) {
 		//levelResultText.setText("");
 		// pauseTimer.stop();
 		this.newLevel();
+	}
+	
+	this.restart = function() {
+		this.start();
 	}
 	
 	this.update = function (elapsed) {
@@ -104,6 +108,14 @@ function Controller(game) {
 	}
 	this.level;
 	this.start();
+	
+	this.pause = function() {
+		this.levelTimer.pause();
+	}
+	
+	this.unpause = function() {
+		this.levelTimer.unpause();
+	}
 }
 
 Controller.CURRENTMATRIXSIZE = 5;

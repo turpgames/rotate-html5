@@ -23884,7 +23884,7 @@ Phaser.ScaleManager.prototype = {
 				// Percentage based
 				this.parentScaleFactor.x = parseInt(width, 10) / 100;
 				this.parentScaleFactor.y = parseInt(width, 10) / 100;
-				newWidth = rect.width * this.parentScaleFactor.x;
+				newWidth = rect.width * 0.90;
 			}
 			newHeight = newWidth;
 		}

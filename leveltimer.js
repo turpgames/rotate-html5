@@ -4,7 +4,7 @@ function LevelTimer(game, controller) {
 	this.totalTime;
 	this.isStopped = true;
 	this.isFlashShown;
-	this.lastSecondsSound = game.make.sound('lastseconds', 1, false, true);
+	this.lastSecondsSound = game.make.sound('lastseconds', 0.6, false, true);
 	this.isLastSeconds = false;
 	
 	this.frameGroup = game.add.group();

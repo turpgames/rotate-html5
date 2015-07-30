@@ -1,15 +1,11 @@
+var controller;
 
-function bod() {
-	var body = document.getElementById("body");
-	var width = screen.availWidth;
-	var height = screen.availHeight;
-	body.setAttribute("style", "width: " + height * 6 / 10);
-	body.setAttribute("style", "height: " + height);
+function restart() {
+	controller.restart();
 }
-		
+
 window.onload = function() {
-		var game = new Phaser.Game("100", "100", Phaser.AUTO, "canvasDiv", { preload: preload, create: create, update: update });
-		var controller;
+		var game = new Phaser.Game("100", "100", Phaser.AUTO, "canvasDiv", { preload: preload, create: create, update: update });		
 		
 		function preload () {
 			game.load.image('color1', 'assets/bubblegum1.png');
