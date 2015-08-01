@@ -37,10 +37,12 @@ function Controller(game) {
 			Controller.CURRENTMATRIXSIZE++;
 			if (Controller.CURRENTMATRIXSIZE > 8) {
 				document.getElementById("finishedGameText").setAttribute("style", "display:block");
+				document.getElementById("finishedGameText").innerHTML = "<h2>WOW!</h2><h2>Didn't expect anybody to make it this far!</h2><h2>A big CONGRATULATIONS is in order.</h2><h2>Thank you for playing.</h2>";
 				return;
 			}
 			else {
 				document.getElementById("finishedGameText").setAttribute("style", "display:none");
+				document.getElementById("finishedGameText").innerHTML = "";
 			}
 			this.mapIndex = 1;
 			this.levelTimer.start(R.LEVELTIMEDEC * Controller.CURRENTMATRIXSIZE, Controller.CURRENTMATRIXSIZE);
