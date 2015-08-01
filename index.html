@@ -34,7 +34,7 @@
 		<style type="text/css">
 			body {
 				font-family: 'nokia_cellphone_fcsmall';
-				background-color:#2E2633
+				background-color:#DCE9BE;
 			}
 			canvas {
 				margin: auto;
@@ -42,7 +42,10 @@
 			p,h1,h2,h3,h4,h5,h6,h7,h8,h9,h10
 			{
 				text-align: center;
-				color:#DCE9BE;
+				color:#99173C;
+				DCE9BE
+				99173C
+				2E2633
 			}
 			.hidden
 			{
@@ -63,41 +66,57 @@
 	</head>
 	<body>
 		<div class="container-fluid">
-		<div class="row">
-			<div class="col-md-3">
-				<h1>
-					Rot8
-				</h1>
-				<h4>
-					Click to rotate and connect all parts.
-					Solve n levels for each size nxn.
-					You get n * 5 seconds for each level.
-				</h4>	
-				<h2 style="font-size:2em">
-					Can you reach 8x8?
-				</h2>
-			</div>
-			<div class="col-md-9">
-				<div class="row">
-					<div class="col-xs-3">
-					</div>
-					<div class="col-xs-6">
-					<h6 style="font-size:1em"> &nbsp; </p>
-					<h2 id="levelTitle" />
-					<h3 id="timerText" />
-					<h4 id="resultText">
-					&nbsp;
-					</h4>
-					</div>
-					<div class="col-xs-3">
-						<h6 style="font-size:1em"> &nbsp; </p>
-						<button type="button" class="btn btn-default btn-lg" onclick="restart();">Restart</button>
-					</div>
-					<div id="canvasDiv" class="col-xs-12" />
+			<div class="row">
+				<div class="col-md-3">
 				</div>
+				<div class="col-md-6">
+					<div class="row">
+						<div class="col-xs-12">
+							<h1>
+								Rot8
+							</h1>
+							<h2 id="levelTitle" />
+							<h3 id="timerText" />
+						</div>
+						<div class="col-xs-12">
+							<div class="row">
+								<div class="col-xs-4">
+								</div>
+								<div class="col-xs-4">
+									<h6 id="resultText">
+									&nbsp;
+									</h6>
+								</div>
+								<div class="col-xs-4" style="text-align:center">
+									<button type="button" class="btn btn-default btn-md" onclick="restart();">Restart</button>
+								</div>
+							</div>
+						</div>
+						<div id="canvasDiv" class="col-xs-12">
+						</div>
+						<div class="col-xs-12">
+							<div class="row">
+								<div class="col-xs-1">
+								</div>
+								<div class="col-xs-10">
+									<h2>
+										Can you reach 8x8?
+									</h2>
+									<h4>
+										Click to rotate and connect all parts.
+										Solve n levels for each size nxn.
+										You get n * 5 seconds for each level.
+									</h4>
+								</div>
+								<div class="col-xs-1">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3">
 				</div>
 			</div>
-		</div>
 		</div>
 	</body>
 </html>

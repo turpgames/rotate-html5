@@ -16,6 +16,7 @@ function Controller(game) {
 		//levelResultText.setText("");
 		// pauseTimer.stop();
 		this.newLevel();
+		document.getElementById("resultText").innerHTML = "&nbsp;";
 	}
 	
 	this.restart = function() {
@@ -66,7 +67,7 @@ function Controller(game) {
 	this.setResultText = function(text) {
 		var res = document.getElementById("resultText");
 		res.innerHTML = text;
-		setTimeout(function() { 
+		return setTimeout(function() { 
 			document.getElementById("resultText").innerHTML = "&nbsp;";
 			}, 1000);
 	}
@@ -98,10 +99,10 @@ function Controller(game) {
 	this.levelLost = function() {
 		this.level.deactivate();
 		
-		this.setResultText("Time up...");
+		clearTimeout(this.setResultText("Time up..."));
 		// gameWonFlash.stop();
 		// btnRestart.startFlash();
-		
+
 		this.levelTimer.stop();
 		
 		this.lostSound.play();

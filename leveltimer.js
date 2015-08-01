@@ -8,13 +8,13 @@ function LevelTimer(game, controller) {
 	this.isLastSeconds = false;
 	
 	this.frameGroup = game.add.group();
-	var sprite = this.frameGroup.create(R.LEVELFRAMEOFFSETX, R.LEVELFRAMEOFFSETY, 'color2');
+	var sprite = this.frameGroup.create(R.LEVELFRAMEOFFSETX, R.LEVELFRAMEOFFSETY, 'color1');
 	sprite.scale.setTo(R.BARLENGTH, R.BARWIDTH);
-	sprite = this.frameGroup.create(R.LEVELFRAMEOFFSETX, R.LEVELFRAMEOFFSETY + R.BARLENGTH - R.BARWIDTH, 'color2');
+	sprite = this.frameGroup.create(R.LEVELFRAMEOFFSETX, R.LEVELFRAMEOFFSETY + R.BARLENGTH - R.BARWIDTH, 'color1');
 	sprite.scale.setTo(R.BARLENGTH, R.BARWIDTH);
-	sprite = this.frameGroup.create(R.LEVELFRAMEOFFSETX, R.LEVELFRAMEOFFSETY, 'color2');
+	sprite = this.frameGroup.create(R.LEVELFRAMEOFFSETX, R.LEVELFRAMEOFFSETY, 'color1');
 	sprite.scale.setTo(R.BARWIDTH, R.BARLENGTH);
-	sprite = this.frameGroup.create(R.LEVELFRAMEOFFSETX + R.BARLENGTH - R.BARWIDTH, R.LEVELFRAMEOFFSETY, 'color2');
+	sprite = this.frameGroup.create(R.LEVELFRAMEOFFSETX + R.BARLENGTH - R.BARWIDTH, R.LEVELFRAMEOFFSETY, 'color1');
 	sprite.scale.setTo(R.BARWIDTH, R.BARLENGTH);
 	
 	this.timerBarScale = 1;
@@ -29,29 +29,18 @@ function LevelTimer(game, controller) {
 	}
 	
 	this.frameGroup = game.add.group();
-	this.timerBar1 = this.frameGroup.create(this.getBarX(), R.LEVELFRAMEOFFSETY, 'color1');
-	this.timerBar2 = this.frameGroup.create(this.getBarX(), R.LEVELFRAMEOFFSETY + R.BARLENGTH - R.BARWIDTH, 'color1');
-	this.timerBar3 = this.frameGroup.create(R.LEVELFRAMEOFFSETX, this.getBarY(), 'color1');
-	this.timerBar4 = this.frameGroup.create(R.LEVELFRAMEOFFSETX + R.BARLENGTH - R.BARWIDTH, this.getBarY(), 'color1');
+	this.timerBar1 = this.frameGroup.create(this.getBarX(), R.LEVELFRAMEOFFSETY, 'color2');
+	this.timerBar2 = this.frameGroup.create(this.getBarX(), R.LEVELFRAMEOFFSETY + R.BARLENGTH - R.BARWIDTH, 'color2');
+	this.timerBar3 = this.frameGroup.create(R.LEVELFRAMEOFFSETX, this.getBarY(), 'color2');
+	this.timerBar4 = this.frameGroup.create(R.LEVELFRAMEOFFSETX + R.BARLENGTH - R.BARWIDTH, this.getBarY(), 'color2');
 	
 	this.update = function(elapsed) {
 		if (!this.isStopped) {
 			this.currTime -= elapsed;
 			this.timerBarScale = this.currTime / this.totalTime;
-			this.timerBar1.scale.setTo(this.getBarLength(), R.BARWIDTH);
-			this.timerBar1.x = this.getBarX();
-			
-			this.timerBar2.scale.setTo(this.getBarLength(), R.BARWIDTH);
-			this.timerBar2.x = this.getBarX();
-			
-			this.timerBar3.scale.setTo(R.BARWIDTH, this.getBarLength());
-			this.timerBar3.y = this.getBarY();
-			
-			this.timerBar4.scale.setTo(R.BARWIDTH, this.getBarLength());
-			this.timerBar4.y = this.getBarY();
-			
 			if (this.currTime < 0) {
 				this.currTime = 0;
+				this.timerBarScale = 0;
 				this.isStopped = true;
 				this.parent.levelLost();
 				window.clearInterval(this.interval);
@@ -65,6 +54,18 @@ function LevelTimer(game, controller) {
 				p.lastSecondsSound.play();
 				}, 1000, this);
 			}
+			
+			this.timerBar1.scale.setTo(this.getBarLength(), R.BARWIDTH);
+			this.timerBar1.x = this.getBarX();
+			
+			this.timerBar2.scale.setTo(this.getBarLength(), R.BARWIDTH);
+			this.timerBar2.x = this.getBarX();
+			
+			this.timerBar3.scale.setTo(R.BARWIDTH, this.getBarLength());
+			this.timerBar3.y = this.getBarY();
+			
+			this.timerBar4.scale.setTo(R.BARWIDTH, this.getBarLength());
+			this.timerBar4.y = this.getBarY();
 			
 			var time = Math.ceil(this.currTime / 1000);
 			// set texts;
