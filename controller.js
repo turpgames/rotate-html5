@@ -35,6 +35,13 @@ function Controller(game) {
 		this.mapIndex++;
 		if (this.mapIndex > Controller.CURRENTMATRIXSIZE) {
 			Controller.CURRENTMATRIXSIZE++;
+			if (Controller.CURRENTMATRIXSIZE > 8) {
+				document.getElementById("finishedGameText").setAttribute("style", "display:block");
+				return;
+			}
+			else {
+				document.getElementById("finishedGameText").setAttribute("style", "display:none");
+			}
 			this.mapIndex = 1;
 			this.levelTimer.start(R.LEVELTIMEDEC * Controller.CURRENTMATRIXSIZE, Controller.CURRENTMATRIXSIZE);
 			if (Controller.CURRENTMATRIXSIZE != 2) {
