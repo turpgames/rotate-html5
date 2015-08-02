@@ -1,20 +1,22 @@
 function LevelTimer(game, controller) {
 	this.parent = controller;
-	this.currTime;
-	this.totalTime;
+	this.currTime = 0;
+	this.totalTime = 0;
 	this.isStopped = true;
 	this.isFlashShown;
 	this.lastSecondsSound = game.make.sound('lastseconds', 0.6, false, true);
 	this.isLastSeconds = false;
+	this.color1 = 'color1';
+	this.color2 = 'color2';
 	
 	this.frameGroup = game.add.group();
-	var sprite = this.frameGroup.create(R.LEVELFRAMEOFFSETX, R.LEVELFRAMEOFFSETY, 'color1');
+	var sprite = this.frameGroup.create(R.LEVELFRAMEOFFSETX, R.LEVELFRAMEOFFSETY, this.color1);
 	sprite.scale.setTo(R.BARLENGTH, R.BARWIDTH);
-	sprite = this.frameGroup.create(R.LEVELFRAMEOFFSETX, R.LEVELFRAMEOFFSETY + R.BARLENGTH - R.BARWIDTH, 'color1');
+	sprite = this.frameGroup.create(R.LEVELFRAMEOFFSETX, R.LEVELFRAMEOFFSETY + R.BARLENGTH - R.BARWIDTH, this.color1);
 	sprite.scale.setTo(R.BARLENGTH, R.BARWIDTH);
-	sprite = this.frameGroup.create(R.LEVELFRAMEOFFSETX, R.LEVELFRAMEOFFSETY, 'color1');
+	sprite = this.frameGroup.create(R.LEVELFRAMEOFFSETX, R.LEVELFRAMEOFFSETY, this.color1);
 	sprite.scale.setTo(R.BARWIDTH, R.BARLENGTH);
-	sprite = this.frameGroup.create(R.LEVELFRAMEOFFSETX + R.BARLENGTH - R.BARWIDTH, R.LEVELFRAMEOFFSETY, 'color1');
+	sprite = this.frameGroup.create(R.LEVELFRAMEOFFSETX + R.BARLENGTH - R.BARWIDTH, R.LEVELFRAMEOFFSETY, this.color1);
 	sprite.scale.setTo(R.BARWIDTH, R.BARLENGTH);
 	
 	this.timerBarScale = 1;
@@ -28,11 +30,21 @@ function LevelTimer(game, controller) {
 		return R.BARLENGTH * this.timerBarScale;
 	}
 	
+	this.stopBarFlash = function() {
+		window.clearInterval(this.flash);		
+		this.color1 = 'color1';
+		this.color2 = 'color2';
+		this.timerBar1.loadTexture(this.color2);
+		this.timerBar2.loadTexture(this.color2);
+		this.timerBar3.loadTexture(this.color2);
+		this.timerBar4.loadTexture(this.color2);
+	}
+	
 	this.frameGroup = game.add.group();
-	this.timerBar1 = this.frameGroup.create(this.getBarX(), R.LEVELFRAMEOFFSETY, 'color2');
-	this.timerBar2 = this.frameGroup.create(this.getBarX(), R.LEVELFRAMEOFFSETY + R.BARLENGTH - R.BARWIDTH, 'color2');
-	this.timerBar3 = this.frameGroup.create(R.LEVELFRAMEOFFSETX, this.getBarY(), 'color2');
-	this.timerBar4 = this.frameGroup.create(R.LEVELFRAMEOFFSETX + R.BARLENGTH - R.BARWIDTH, this.getBarY(), 'color2');
+	this.timerBar1 = this.frameGroup.create(this.getBarX(), R.LEVELFRAMEOFFSETY, this.color2);
+	this.timerBar2 = this.frameGroup.create(this.getBarX(), R.LEVELFRAMEOFFSETY + R.BARLENGTH - R.BARWIDTH, this.color2);
+	this.timerBar3 = this.frameGroup.create(R.LEVELFRAMEOFFSETX, this.getBarY(), this.color2);
+	this.timerBar4 = this.frameGroup.create(R.LEVELFRAMEOFFSETX + R.BARLENGTH - R.BARWIDTH, this.getBarY(), this.color2);
 	
 	this.update = function(elapsed) {
 		if (!this.isStopped) {
@@ -44,15 +56,26 @@ function LevelTimer(game, controller) {
 				this.isStopped = true;
 				this.parent.levelLost();
 				window.clearInterval(this.interval);
+				this.stopBarFlash();
 			}
 			else if (this.currTime < 500) {
 				window.clearInterval(this.interval);
 			}
 			else if (this.isFlashShown && this.currTime < 10000 && !this.isLastSeconds) {
 				this.isLastSeconds = true;
+				this.lastSecondsSound.play();
 				this.interval = setInterval(function(p) {
 				p.lastSecondsSound.play();
 				}, 1000, this);
+				this.flash = setInterval(function(p) {
+					temp = p.color1;
+					p.color1 = p.color2;
+					p.color2 = temp;
+					p.timerBar1.loadTexture(p.color2);
+					p.timerBar2.loadTexture(p.color2);
+					p.timerBar3.loadTexture(p.color2);
+					p.timerBar4.loadTexture(p.color2);
+				}, 100, this);
 			}
 			
 			this.timerBar1.scale.setTo(this.getBarLength(), R.BARWIDTH);
@@ -97,6 +120,8 @@ function LevelTimer(game, controller) {
 		this.currTime = totalTime;
 		this.isStopped = false;
 		this.isLastSeconds = false;
+		window.clearInterval(this.interval);
+		this.stopBarFlash();
 	}
 	
 	this.addTime = function(addedTime) {
@@ -104,5 +129,6 @@ function LevelTimer(game, controller) {
 		this.currTime += addedTime;
 		this.isLastSeconds = false;
 		window.clearInterval(this.interval);
+		this.stopBarFlash();
 	}
 }

@@ -13,8 +13,6 @@ function Controller(game) {
 	this.start = function() {
 		this.mapIndex = 1;
 		Controller.CURRENTMATRIXSIZE = 1;
-		//levelResultText.setText("");
-		// pauseTimer.stop();
 		this.newLevel();
 		document.getElementById("resultText").innerHTML = "&nbsp;";
 	}
@@ -38,6 +36,7 @@ function Controller(game) {
 			if (Controller.CURRENTMATRIXSIZE > 8) {
 				document.getElementById("finishedGameText").setAttribute("style", "display:block");
 				document.getElementById("finishedGameText").innerHTML = "<h2>WOW!</h2><h2>Didn't expect anybody to make it this far!</h2><h2>A big CONGRATULATIONS is in order.</h2><h2>Thank you for playing.</h2>";
+				this.levelTimer.stop();
 				return;
 			}
 			else {
@@ -87,14 +86,14 @@ function Controller(game) {
 		
 		var addedTime = this.getLevelTime();
 		if (this.mapIndex < Controller.CURRENTMATRIXSIZE) {
-			this.setResultText("+" + addedTime/1000 + "!");
+			//this.setResultText("+" + addedTime/1000 + "!");
 		}
 		else if (Controller.CURRENTMATRIXSIZE < 8 ) {
 			this.setResultText("SIZE UP!");
 		}
 		else {
-			this.start();
-			// ScreenManager.instance.switchTo(R.Screens.finished, false);
+			this.newLevel();
+			return;
 		}
 		// gameWonFlash.start();
 		this.levelTimer.addTime(addedTime);
@@ -128,7 +127,7 @@ function Controller(game) {
 	}
 }
 
-Controller.CURRENTMATRIXSIZE = 5;
+Controller.CURRENTMATRIXSIZE = 1;
 Controller.getBlockSize = function() {
 	return R.LEVELSIZE / Controller.CURRENTMATRIXSIZE;
 };
