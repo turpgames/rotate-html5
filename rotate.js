@@ -23,6 +23,7 @@ window.onload = function() {
 		function create () {
 			game.stage.backgroundColor = '#2E2633';
 			game.input.maxPointers = 1;
+			game.forceSingleUpdate = true;
 			R(game);
 			controller = new Controller(game);
 			// var y = 0;
